@@ -1,20 +1,68 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <ion-item lines="none">
+      <ion-label style="font-weight: 800;font-size: 3em"> 
+        Course 
+      </ion-label>
+    </ion-item>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+
+  
+  
+  <ion-header>
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title>
+       Lessons
+      </ion-title>
     </ion-toolbar>
   </ion-header>
+  
+ 
+  <ion-content>
+    <ion-item lines="none" class="button-row">
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
-</ion-content>
+    <ion-button expand="block" shape="round" (click)="deleteTask(i)">Delete Task</ion-button>
+      
+      <ion-button expand="block" shape="round" color="success">Completed</ion-button>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating"></ion-label>
+      <ion-input [(ngModel)]="newTask"></ion-input>
+    </ion-item>
+    <ion-button expand="full" (click)="addTask()">Add Task</ion-button>
+    
+    <ion-list>
+      <ion-item *ngFor="let task of tasks; let i = index">
+        <ion-checkbox slot="start" [(ngModel)]="task.completed"></ion-checkbox>
+        <ion-input [value]="task.name" readonly></ion-input>
+        <ion-button slot="end" color="danger" (click)="deleteTask(i)">Delete</ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+  
+  <style>
+    .button-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+    }
+  </style>
+  
+    
+    
+ 
+  
+
+
+
+
+
+   
+  
+ 
+ 
+  
+ 

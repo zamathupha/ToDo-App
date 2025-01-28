@@ -28,6 +28,8 @@ completeTask(index: number): Marks a task as completed at the specified index.
 Template
 The template includes the following elements:
 
+Deploy Netlify incomparable-gnome-cf601d.netlify.app
+
 Input Field: Allows users to enter a new task.
 
 Add Task Button: Triggers the addTask function to add a new task.

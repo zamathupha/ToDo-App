@@ -1,48 +1,52 @@
 import { Component } from '@angular/core';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { IonHeader,
-   IonToolbar,
-    IonTitle,
-     IonContent,
-    IonItem,
-    IonLabel,
-    IonCard,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonIcon,
-    
-  } from '@ionic/angular/standalone';
+import { CommonModule } from '@angular/common';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonicModule, IonCheckbox, IonButton, IonInput } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  imports: [IonHeader,IonToolbar, IonItem,IonContent,IonLabel,
-   
-],
+  standalone: true,
+  imports: [CommonModule, FormsModule, IonicModule]
 })
 export class HomePage {
-  newTask: string = '';
-  tasks: Array<{ name: string, completed: boolean }> = [];
-  i: number = 0;
+  newTaskTitle: string = '';
+  newTaskDescription: string = '';
+  tasks: Array<{
+name: any; title: string, description: string, completed: boolean 
+}> = [];
+newTask: any;
+i: number | undefined;
 
   addTask() {
-    if (this.newTask.trim().length === 0) {
+    if (this.newTaskTitle.trim().length === 0) {
       return;
     }
     this.tasks.push({
-      name: this.newTask,
-      completed: false
+      title: this.newTaskTitle,
+      description: this.newTaskDescription,
+      completed: false,
+      name: undefined
     });
-    this.newTask = '';
+    this.newTaskTitle = '';
+    this.newTaskDescription = '';
   }
 
-  deleteTask(index: number) {
-    this.tasks.splice(index, 1);
+  deleteTask(index: number | undefined) {
+    if (index !== undefined) {
+      this.tasks.splice(index, 1);
+    }
+  }
+  
+  markCompleted(index: number | undefined) {
+    if (index !== undefined) {
+      this.tasks[index].completed = true;
+    }
   }
   
 }
+
 
 
 

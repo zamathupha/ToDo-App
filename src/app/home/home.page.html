@@ -1,56 +1,55 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-item lines="none">
-      <ion-label style="font-weight: 800;font-size: 3em"> 
-        Course 
+      <ion-label style="font-weight: 800; font-size: 3em">
+        Course
       </ion-label>
     </ion-item>
-    </ion-toolbar>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  
-  
   <ion-header>
     <ion-toolbar>
-      <ion-title>
-       Lessons
-      </ion-title>
+      <ion-title>Lessons</ion-title>
     </ion-toolbar>
   </ion-header>
-  
- 
-  <ion-content>
-    <ion-item lines="none" class="button-row">
 
-    <ion-button expand="block" shape="round" (click)="deleteTask(i)">Delete Task</ion-button>
-      
-      <ion-button expand="block" shape="round" color="success">Completed</ion-button>
-    </ion-item>
+  <ion-content>
+   
     <ion-item>
-      <ion-label position="floating"></ion-label>
-      <ion-input [(ngModel)]="newTask"></ion-input>
+      <ion-label position="floating">Task Title</ion-label>
+      <ion-input [(ngModel)]="newTaskTitle"></ion-input>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Description</ion-label>
+      <ion-input [(ngModel)]="newTaskDescription"></ion-input>
+    </ion-item>
+
     <ion-button expand="full" (click)="addTask()">Add Task</ion-button>
-    
+
     <ion-list>
       <ion-item *ngFor="let task of tasks; let i = index">
-        <ion-checkbox slot="start" [(ngModel)]="task.completed"></ion-checkbox>
-        <ion-input [value]="task.name" readonly></ion-input>
+        <ion-checkbox slot="start" [(ngModel)]="task.completed" (ionChange)="markCompleted(i)"></ion-checkbox>
+        <ion-label>
+          <h2>{{ task.title }}</h2>
+          <p>{{ task.description }}</p>
+        </ion-label>
         <ion-button slot="end" color="danger" (click)="deleteTask(i)">Delete</ion-button>
       </ion-item>
     </ion-list>
   </ion-content>
-  
-  <style>
-    .button-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 16px;
-    }
-  </style>
-  
+</ion-content>
+
+<style>
+  .button-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+  }
+</style>
+
     
     
  
